@@ -5,7 +5,7 @@ ON tracks.TrackId = playlist_track.TrackId
 group by tracks.name
 order by 2 DESC;
 
-select COUNT(invoice_items.TrackId), SUM(invoice_items.UnitPrice) FROM invoice_items
+SELECT COUNT(invoice_items.TrackId), SUM(invoice_items.UnitPrice) FROM invoice_items
 LEFT JOIN tracks
 ON tracks.TrackId = invoice_items.TrackId
 GROUP BY tracks.TrackId
@@ -37,7 +37,7 @@ ORDER BY 1 DESC;
 
 
 
-SELECT invoices.BillingCountry, ROUND((sum(invoice_items.UnitPrice) / (select sum(invoice_items.UnitPrice) from invoice_items) * 100), 2) as '% from Grand Total'
+SELECT invoices.BillingCountry, ROUND((SUM(invoice_items.UnitPrice) / (SELECT SUM(invoice_items.UnitPrice) from invoice_items) * 100), 2) as '% from Grand Total'
 FROM invoice_items
 LEFT JOIN invoices
 ON invoices.InvoiceId = invoice_items.InvoiceId
