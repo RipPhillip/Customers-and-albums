@@ -55,4 +55,13 @@ ON employees.EmployeeId=customers.SupportRepId
 GROUP BY 1
 ORDER BY 4 DESC;
 
+--What is average revenue for each sale
+SELECT inv.CustomerId, ROUND(AVG(total),2) AS What_They_Buyin_AVG, SUM(total) AS Totes_Spents
+FROM invoices AS inv
+JOIN customers AS cus
+ON inv.CustomerId = cus.CustomerId
+GROUP BY 1
+ORDER BY 1;
+
+
 
